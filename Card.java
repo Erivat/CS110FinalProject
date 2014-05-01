@@ -6,7 +6,7 @@ public class Card implements Comparable
     private char suit;
  
     //default constructor
-    public Card2()
+    public Card()
     {
         suit = '\u0003';
         rank = 0;

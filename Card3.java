@@ -1,4 +1,3 @@
-
 public class Card3
 {     
     // Constants     

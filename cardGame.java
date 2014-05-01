@@ -1,4 +1,4 @@
-// import needed classes and packages
+// Emile Rivat
 
 import java.util.Scanner;
 import java.text.NumberFormat;
@@ -6,13 +6,10 @@ import java.io.IOException;
 import java.util.Locale;
 import java.text.DecimalFormat;
 
-// Program2
 public class cardGame
 {
    public static void main(String[] args) throws IOException
    {
-    //Declare Variables
-    //Creates the cards based on their suite
     Card cardOfHearts;
     Card cardOfDiamond;
     Card cardOfSpades;
@@ -36,45 +33,33 @@ public class cardGame
         deckOfCards.add(cardOfClubs = new Card(club, i));
    }
  
-    //prints out the deck of Cards
     System.out.println("Deck Of Cards: " + deckOfCards);
-    //shuffles the cards
     deckOfCards.shuffle();
-    //Prints out the deck of cards after they are shuffled
     System.out.println("Deck of Cards after shuffled: " + deckOfCards);
-    //Checking the size of the Deck
     System.out.println("" + deckOfCards.size());
-    //Takes the deckOfCards and splits them up into 2 piles for Player1 and Player2
     for(int i = 0; i < 26; i++)
     {
         player1Pile.add(deckOfCards.getTopCard());
         player2Pile.add(deckOfCards.getTopCard());
     }
-    //Prints out the deck of Cards and then the player 1's pile and player 2's pile
     System.out.println("Deck of Cards after removing cards into two piles: " + deckOfCards);
     System.out.println("Player 1's Cards: " + player1Pile);
     System.out.println("Player 2's Cards: " + player2Pile);
     
-    //checking the size of each players Pile
     System.out.println("" + player1Pile.size());
     System.out.println("" + player2Pile.size());
  
-    //Prints the header for the game
     System.out.println("Lets have a war!!!");
     System.out.println("\n\tPlayer 1                                         Player 2");
     System.out.println("\n\t--------                                         --------");
-    
-    //Testing tricky spot where the getTopCard removes a the topcard
 
     try
-    {   //do while the sizes of the player piles are greater than 0.
+    { 
         do
         {
-            //gets the top cards of each players Pile
             Card player1RemovedTopCard = player1Pile.getTopCard();
             Card player2RemovedTopCard = player2Pile.getTopCard();
  
-            //Compares the 2 cards to test which is bigger. If player 1's card is smaller than player 2 is the winner
             if(player1RemovedTopCard.compareTo(player2RemovedTopCard) < player2RemovedTopCard.compareTo(player1RemovedTopCard))
             {
                 System.out.println("Player 1: " + player1RemovedTopCard + " Player 2: " + player2RemovedTopCard);
@@ -86,7 +71,6 @@ public class cardGame
                 System.out.println("\n");
                 keyboard.nextLine();
             }
-            //Compares the 2 cards to test which is bigger. If player 2's card is smaller than player 1 is the winner.
             else if(player1RemovedTopCard.compareTo(player2RemovedTopCard) > player2RemovedTopCard.compareTo(player1RemovedTopCard))
             {
                 System.out.println("Player 1: " + player1RemovedTopCard + " Player 2: " + player2RemovedTopCard);
@@ -98,13 +82,12 @@ public class cardGame
                 System.out.println("\n");
                 keyboard.nextLine();
             }
-            //Else it is a war
             else
             {
                 System.out.println("Player 1: " + player1RemovedTopCard + " Player 2: " + player2RemovedTopCard);
                 System.out.println("Let's Play!");
                 
-                //War if the player has only 4 cards left.
+
                 if(player1Pile.size() == 1 || player2Pile.size() == 1)
                 {
                     Card player1RemovedTopCard2 = player1Pile.getTopCard();
@@ -153,7 +136,6 @@ public class cardGame
                         }
                     }
                 }
-                //War if the player has only 2 cards left.
                 else if(player1Pile.size() == 2 || player2Pile.size() == 2)
                 {
                     Card player1RemovedTopCard2 = player1Pile.getTopCard();
@@ -192,10 +174,8 @@ public class cardGame
                             System.out.println("\n");
                             keyboard.nextLine();
                         }
-                    //Continues the war if the top card at the end of the war are still equal
                     }while(player1RemovedTopCard3.compareTo(player2RemovedTopCard3) == player2RemovedTopCard3.compareTo(player1RemovedTopCard3));
                 }
-                //War if the player has only 3 cards left.
                 else if(player1Pile.size() == 3 || player2Pile.size() == 3)
                 {
                     Card player1RemovedTopCard2 = player1Pile.getTopCard();
@@ -241,10 +221,8 @@ public class cardGame
                             System.out.println("\n");
                             keyboard.nextLine();
                         }
-                    //Continues the war if the top card at the end of the war are still equal
                     }while(player1RemovedTopCard4.compareTo(player2RemovedTopCard4) == player2RemovedTopCard4.compareTo(player1RemovedTopCard4));
                 }
-                //war if player has more than 4 cards
                 else if(player1Pile.size() >= 4 || player2Pile.size() >= 4)
                 {
                     Card player1RemovedTopCard2 = player1Pile.getTopCard();
@@ -294,28 +272,22 @@ public class cardGame
                             System.out.println("\n");
                             keyboard.nextLine();
                         }
-                    //Continues the war if the top card at the end of the war are still equal
 
                     }while(player1RemovedTopCard5.compareTo(player2RemovedTopCard5) == player2RemovedTopCard5.compareTo(player1RemovedTopCard5));
                 }
             }
-            //Adds to the plays that keep track of how many plays have been made
             numOfPlays++;
-            //. If there are 10 plays it shuffles and prints out a message that the cards have been shuffled.
             if(numOfPlays >= 10)
             {
                 player1Pile.shuffle();
                 player2Pile.shuffle();
                 System.out.println("Cards Shuffled");
-                //resets the counter to 0
                 numOfPlays = 0;
             }
-        //Continues the game of war while the players piles are bigger than 0
         }while(player1Pile.size() > 0 || player2Pile.size() > 0);
     }
  
-    //Catches the Array 0 error and prints out who is the winner based on who has zero cards.
-    catch (IndexOutOfBoundsException theException)  //tries to catch this type...
+    catch (IndexOutOfBoundsException theException)
         {
             if(player1Pile.size() == 0)
             {
@@ -326,5 +298,5 @@ public class cardGame
  
         }
  
-    } //end of main
-}//end of class
+    } 
+}
